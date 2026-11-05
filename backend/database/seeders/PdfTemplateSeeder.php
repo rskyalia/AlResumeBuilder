@@ -44,5 +44,16 @@ class PdfTemplateSeeder extends Seeder
                 'thumbnail'   => null,
             ]
         );
+
+        PdfTemplate::updateOrCreate(
+            ['slug' => 'classic'],
+            [
+                'name'        => 'Klasik Indonesia',
+                'description' => 'Format resume Indonesia standar: nama besar, kontak di kanan, pendidikan dua kolom, skill, dan prestasi',
+                'is_pro'      => false,
+                'html_path'   => 'pdf-templates/classic.html',
+                'thumbnail'   => null,
+            ]
+        );
     }
 }

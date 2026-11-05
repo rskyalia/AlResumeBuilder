@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
 
+  // Set turbopack root to frontend directory to avoid lockfile confusion
+  turbopack: {
+    root: process.cwd(),
+  },
+
   // Allow images from external domains (e.g. user-uploaded photos via backend)
   images: {
     remotePatterns: [
