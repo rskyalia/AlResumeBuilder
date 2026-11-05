@@ -61,7 +61,7 @@ export function AIGeneratingState({
         {/* Orb */}
         <div className="relative flex h-12 w-12 shrink-0 items-center justify-center">
           <span className="animate-ai-ring absolute inset-0 rounded-full bg-primary/15" />
-          <span className="absolute inset-1 rounded-full bg-gradient-to-tr from-violet-500/20 via-fuchsia-500/20 to-sky-500/20 blur-[2px]" />
+          <span className="absolute inset-1 rounded-full bg-gradient-to-tr from-teal-500/20 via-emerald-500/20 to-teal-400/20 blur-[2px]" />
           <Sparkles
             className="animate-ai-orb relative h-6 w-6 text-primary"
             aria-hidden="true"

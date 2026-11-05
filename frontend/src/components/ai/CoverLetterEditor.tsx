@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Printer, Copy, Check, Pencil, Eye } from 'lucide-react';
+import { Printer, Copy, Check, Pencil, Eye, Download } from 'lucide-react';
+import { Document, Packer, Paragraph, TextRun, AlignmentType, HeadingLevel } from 'docx';
+import { saveAs } from 'file-saver';
 import { useAIJob } from '@/hooks/useAIJob';
 import { useAuth } from '@/hooks/useAuth';
 import { AIJobStatus } from '@/components/ai/AIJobStatus';
@@ -199,6 +201,188 @@ function printCoverLetter(params: {
     win.print();
     win.close();
   }, 250);
+}
+
+/**
+ * Generate and download DOCX file for cover letter
+ */
+async function downloadCoverLetterDOCX(params: {
+  bodyText: string;
+  fullName: string;
+  phone: string;
+  email: string;
+  address: string;
+  companyName: string;
+  positionName: string;
+  recruiterName: string;
+}) {
+  const {
+    bodyText, fullName, phone, email, address,
+    companyName, positionName, recruiterName,
+  } = params;
+
+  const today = formatDateIndonesian();
+  
+  // Split body text into paragraphs
+  const paragraphs = bodyText
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const salutation = recruiterName
+    ? `Yth. ${recruiterName},`
+    : 'Yth. Bapak/Ibu HRD,';
+
+  // Build document sections
+  const children: Paragraph[] = [];
+
+  // Sender info
+  if (fullName) {
+    children.push(
+      new Paragraph({
+        text: fullName,
+        spacing: { after: 100 },
+      })
+    );
+  }
+  if (phone) {
+    children.push(
+      new Paragraph({
+        text: phone,
+        spacing: { after: 100 },
+      })
+    );
+  }
+  if (email) {
+    children.push(
+      new Paragraph({
+        text: email,
+        spacing: { after: 100 },
+      })
+    );
+  }
+  if (address) {
+    children.push(
+      new Paragraph({
+        text: address,
+        spacing: { after: 300 },
+      })
+    );
+  }
+
+  // Date
+  children.push(
+    new Paragraph({
+      text: today,
+      spacing: { after: 300 },
+    })
+  );
+
+  // Recipient info
+  if (recruiterName) {
+    children.push(
+      new Paragraph({
+        text: recruiterName,
+        spacing: { after: 100 },
+      })
+    );
+  }
+  children.push(
+    new Paragraph({
+      text: companyName,
+      spacing: { after: 300 },
+    })
+  );
+
+  // Salutation
+  children.push(
+    new Paragraph({
+      text: salutation,
+      spacing: { after: 100 },
+    })
+  );
+
+  // Subject
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: `Perihal: Lamaran Pekerjaan sebagai ${positionName}`,
+          bold: true,
+        }),
+      ],
+      spacing: { after: 300 },
+    })
+  );
+
+  // Body paragraphs
+  paragraphs.forEach((para, index) => {
+    const lines = para.split('\n').map((l) => l.trim()).filter(Boolean);
+    
+    if (lines.length > 1) {
+      // Multiple lines - add each as separate text run with line breaks
+      const runs: TextRun[] = [];
+      lines.forEach((line, lineIndex) => {
+        runs.push(new TextRun(line));
+        if (lineIndex < lines.length - 1) {
+          runs.push(new TextRun({ break: 1 }));
+        }
+      });
+      children.push(
+        new Paragraph({
+          children: runs,
+          spacing: { after: 200 },
+          alignment: AlignmentType.JUSTIFIED,
+        })
+      );
+    } else {
+      children.push(
+        new Paragraph({
+          text: para,
+          spacing: { after: 200 },
+          alignment: AlignmentType.JUSTIFIED,
+        })
+      );
+    }
+  });
+
+  // Closing
+  children.push(
+    new Paragraph({
+      text: 'Hormat saya,',
+      spacing: { after: 800 }, // Space for signature
+    })
+  );
+
+  children.push(
+    new Paragraph({
+      text: fullName || '_________________',
+    })
+  );
+
+  // Create document
+  const doc = new Document({
+    sections: [
+      {
+        properties: {
+          page: {
+            margin: {
+              top: 1440, // 1 inch = 1440 twips
+              right: 1440,
+              bottom: 1440,
+              left: 1440,
+            },
+          },
+        },
+        children,
+      },
+    ],
+  });
+
+  // Generate and download
+  const blob = await Packer.toBlob(doc);
+  const filename = `Cover_Letter_${positionName.replace(/\s+/g, '_')}_${companyName.replace(/\s+/g, '_')}.docx`;
+  saveAs(blob, filename);
 }
 
 // ─── Cover Letter Preview ─────────────────────────────────────────────────────
@@ -405,6 +589,19 @@ export function CoverLetterEditor({ resumeId, resume }: CoverLetterEditorProps) 
     });
   };
 
+  const handleDownloadDOCX = async () => {
+    await downloadCoverLetterDOCX({
+      bodyText: displayResult,
+      fullName: resume?.full_name ?? '',
+      phone: resume?.phone ?? '',
+      email: user?.email ?? '',
+      address: resume?.address ?? '',
+      companyName: submittedValues.company,
+      positionName: submittedValues.position,
+      recruiterName: submittedValues.recruiter,
+    });
+  };
+
   const isGenerating = status === 'pending' || status === 'processing';
 
   return (
@@ -460,11 +657,7 @@ export function CoverLetterEditor({ resumeId, resume }: CoverLetterEditorProps) 
         <Button
           type="submit"
           disabled={isSubmitting || isGenerating}
-          className={
-            isGenerating
-              ? ''
-              : 'gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md shadow-fuchsia-500/20 transition-all hover:opacity-90 hover:shadow-lg hover:shadow-fuchsia-500/30'
-          }
+          className="gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md hover:from-teal-600 hover:to-emerald-600 hover:shadow-lg transition-all duration-200"
         >
           {isGenerating ? 'Sedang Membuat...' : 'Buat Cover Letter'}
         </Button>
@@ -536,10 +729,20 @@ export function CoverLetterEditor({ resumeId, resume }: CoverLetterEditorProps) 
                 type="button"
                 size="sm"
                 onClick={handlePrint}
-                className="gap-1.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-sm shadow-fuchsia-500/20 hover:opacity-90"
+                className="gap-1.5 bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-sm hover:from-teal-600 hover:to-emerald-600 hover:shadow-md transition-all duration-200"
               >
                 <Printer className="h-3.5 w-3.5" aria-hidden="true" />
                 Cetak
+              </Button>
+
+              <Button
+                type="button"
+                size="sm"
+                onClick={handleDownloadDOCX}
+                className="gap-1.5 bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-sm hover:from-teal-600 hover:to-emerald-600 hover:shadow-md transition-all duration-200"
+              >
+                <Download className="h-3.5 w-3.5" aria-hidden="true" />
+                Download DOCX
               </Button>
             </div>
           </div>

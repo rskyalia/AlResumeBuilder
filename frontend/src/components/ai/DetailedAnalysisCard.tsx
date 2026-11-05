@@ -66,7 +66,7 @@ function OverallScore({ score }: { score: number }) {
       {/* Decorative gradient */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-tr from-violet-500/10 via-fuchsia-500/10 to-sky-500/10 blur-2xl"
+        className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-tr from-teal-500/10 via-emerald-500/10 to-teal-400/10 blur-2xl"
       />
       <p className="mb-1 text-sm font-medium text-muted-foreground">Skor ATS Keseluruhan</p>
       <div className="flex items-end gap-3">

@@ -393,7 +393,11 @@ function ExperienceModal({ open, onOpenChange, initial, onSave }: ExperienceModa
                 Batal
               </Button>
             </DialogClose>
-            <Button type="submit" disabled={submitting}>
+            <Button 
+              type="submit" 
+              disabled={submitting}
+              className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md hover:from-teal-600 hover:to-emerald-600 hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               {submitting ? 'Menyimpan...' : 'Simpan'}
             </Button>
           </DialogFooter>
@@ -523,14 +527,14 @@ export function ExperienceForm({ resumeId }: ExperienceFormProps) {
     const type = entry.experience_type ?? 'kerja';
     if (type === 'lomba') {
       return (
-        <Badge className="bg-amber-100 text-amber-800 border-amber-200 hover:bg-amber-100">
+        <Badge className="bg-amber-100 text-amber-800 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800">
           Lomba
         </Badge>
       );
     }
     if (type === 'organisasi') {
       return (
-        <Badge className="bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-100">
+        <Badge className="bg-teal-100 text-teal-800 border-teal-200 hover:bg-teal-100 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-800">
           Organisasi
         </Badge>
       );

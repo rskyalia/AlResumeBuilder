@@ -34,7 +34,7 @@ export function AIJobStatus({ status, result, error, loadingMessages }: AIJobSta
     return (
       <div className="animate-fade-in-up rounded-xl border bg-card p-4 shadow-sm sm:p-5">
         <div className="mb-2 flex items-center gap-2">
-          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-tr from-violet-500/15 via-fuchsia-500/15 to-sky-500/15">
+          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-tr from-teal-500/15 via-emerald-500/15 to-teal-400/15">
             <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
           </span>
           <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">

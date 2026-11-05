@@ -177,7 +177,11 @@ export function PersonalInfoForm({ resumeId, resume, onSaved }: PersonalInfoForm
  </p>
  )}
 
- <Button type="submit" disabled={isSaving || !isDirty}>
+ <Button 
+ type="submit" 
+ disabled={isSaving || !isDirty}
+ className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md hover:from-teal-600 hover:to-emerald-600 hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+ >
  {isSaving ? 'Mengupdate...' : 'Update'}
  </Button>
  </form>

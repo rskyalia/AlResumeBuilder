@@ -39,9 +39,9 @@ function EmptyState({ onCreateClick, disabled }: { onCreateClick: () => void; di
       {/* Decorative gradient glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-20 left-1/2 h-48 w-72 -translate-x-1/2 rounded-full bg-gradient-to-tr from-violet-500/10 via-fuchsia-500/10 to-sky-500/10 blur-3xl"
+        className="pointer-events-none absolute -top-20 left-1/2 h-48 w-72 -translate-x-1/2 rounded-full bg-gradient-to-tr from-teal-500/10 via-emerald-500/10 to-teal-400/10 blur-3xl"
       />
-      <span className="relative mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500/15 via-fuchsia-500/15 to-sky-500/15">
+      <span className="relative mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500/15 via-emerald-500/15 to-teal-400/15">
         <FileText className="h-8 w-8 text-muted-foreground/70" aria-hidden="true" />
       </span>
       <h3 className="relative mb-1 text-lg font-semibold">Belum ada resume</h3>
@@ -51,7 +51,7 @@ function EmptyState({ onCreateClick, disabled }: { onCreateClick: () => void; di
       <Button
         onClick={onCreateClick}
         disabled={disabled}
-        className="relative gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md shadow-fuchsia-500/20 transition-all hover:opacity-90 hover:shadow-lg hover:shadow-fuchsia-500/30"
+        className="relative gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md hover:from-teal-600 hover:to-emerald-600 hover:shadow-lg transition-all duration-200"
       >
         <Plus className="h-4 w-4" aria-hidden="true" />
         Buat Resume Pertama
@@ -96,7 +96,7 @@ export default function DashboardPage() {
       <div className="relative overflow-hidden rounded-xl border bg-card p-5 shadow-sm sm:p-6">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-gradient-to-tr from-violet-500/15 via-fuchsia-500/10 to-sky-500/15 blur-3xl"
+          className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-gradient-to-tr from-teal-500/15 via-emerald-500/10 to-teal-400/15 blur-3xl"
         />
         <div className="relative flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -119,7 +119,7 @@ export default function DashboardPage() {
             <Button
               onClick={handleCreateResume}
               disabled={noCredits || isCreating || isLoading}
-              className="gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md shadow-fuchsia-500/20 transition-all hover:opacity-90 hover:shadow-lg hover:shadow-fuchsia-500/30"
+              className="gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md hover:from-teal-600 hover:to-emerald-600 hover:shadow-lg transition-all duration-200"
             >
               {isCreating ? (
                 <>

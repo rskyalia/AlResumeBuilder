@@ -149,7 +149,11 @@ function SkillModal({ open, onOpenChange, initial, onSave }: SkillModalProps) {
  Batal
  </Button>
  </DialogClose>
- <Button type="submit" disabled={submitting}>
+ <Button 
+ type="submit" 
+ disabled={submitting}
+ className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md hover:from-teal-600 hover:to-emerald-600 hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+ >
  {submitting ? 'Menyimpan...' : 'Simpan'}
  </Button>
  </DialogFooter>

@@ -106,7 +106,7 @@ export default function AISummaryPage() {
         <Button
           onClick={handleGenerate}
           disabled={isInFlight}
-          className="gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md shadow-fuchsia-500/20 transition-all hover:opacity-90 hover:shadow-lg hover:shadow-fuchsia-500/30"
+          className="gap-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md hover:from-teal-600 hover:to-emerald-600 hover:shadow-lg transition-all duration-200"
         >
           <Sparkles className="h-4 w-4" aria-hidden="true" />
           Generate AI Summary
