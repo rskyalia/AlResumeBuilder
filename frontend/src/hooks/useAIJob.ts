@@ -1,10 +1,13 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import apiClient from '@/lib/api-client';
 import { usePolling } from '@/hooks/usePolling';
 import type { AiJob, AiJobStatus } from '@/types/ai-job';
 import type { ApiResponse } from '@/types/api';
+
+/** Maximum time (ms) to wait for an AI job before giving up on the client side */
+const AI_JOB_CLIENT_TIMEOUT_MS = 3 * 60 * 1000; // 3 minutes
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -49,7 +52,14 @@ export function useAIJob(): UseAIJobReturn {
   const [status, setStatus] = useState<AIJobHookStatus>('idle');
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Clear timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
   // ── Poll status ────────────────────────────────────────────────────────────
 
   const pollStatus = useCallback(async () => {
@@ -64,8 +74,10 @@ export function useAIJob(): UseAIJobReturn {
       setStatus(job.status);
 
       if (job.status === 'completed') {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
         setResult(job.result);
       } else if (job.status === 'failed') {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
         setError(job.error_message);
       }
     } catch {
@@ -82,6 +94,9 @@ export function useAIJob(): UseAIJobReturn {
 
   const dispatch = useCallback(
     async (endpoint: string, body?: Record<string, unknown>): Promise<void> => {
+      // Clear any previous timeout
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
       // Reset any previous job state before starting a new one
       setJobId(null);
       setResult(null);
@@ -94,6 +109,14 @@ export function useAIJob(): UseAIJobReturn {
 
       setJobId(envelope.data.job_id);
       setStatus(envelope.data.status ?? 'pending');
+
+      // Client-side safety net: stop polling and surface an error if the job
+      // hasn't completed within AI_JOB_CLIENT_TIMEOUT_MS (e.g. worker crashed
+      // before the failed() hook could update the DB row).
+      timeoutRef.current = setTimeout(() => {
+        setStatus('failed');
+        setError('AI membutuhkan waktu terlalu lama. Silakan coba lagi.');
+      }, AI_JOB_CLIENT_TIMEOUT_MS);
     },
     [],
   );
@@ -101,6 +124,7 @@ export function useAIJob(): UseAIJobReturn {
   // ── Reset ──────────────────────────────────────────────────────────────────
 
   const reset = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setJobId(null);
     setStatus('idle');
     setResult(null);

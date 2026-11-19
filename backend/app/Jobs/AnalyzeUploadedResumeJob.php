@@ -72,4 +72,14 @@ class AnalyzeUploadedResumeJob implements ShouldQueue
 
         return $data;
     }
+
+    public function failed(\Throwable $exception): void
+    {
+        UploadedAnalysis::where('id', $this->analysisId)
+            ->whereIn('status', ['pending', 'processing'])
+            ->update([
+                'status'        => 'failed',
+                'error_message' => 'Job timed out or was forcefully terminated: ' . $exception->getMessage(),
+            ]);
+    }
 }

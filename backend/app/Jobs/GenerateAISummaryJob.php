@@ -41,4 +41,18 @@ class GenerateAISummaryJob implements ShouldQueue
             ]);
         }
     }
+
+    /**
+     * Handle a job failure (e.g. worker timeout kills the process).
+     * Ensures the AiJob row is never stuck in 'processing'.
+     */
+    public function failed(\Throwable $exception): void
+    {
+        AiJob::where('id', $this->aiJobId)
+            ->whereIn('status', ['pending', 'processing'])
+            ->update([
+                'status'        => 'failed',
+                'error_message' => 'Job timed out or was forcefully terminated: ' . $exception->getMessage(),
+            ]);
+    }
 }

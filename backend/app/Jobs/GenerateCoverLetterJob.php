@@ -59,4 +59,14 @@ class GenerateCoverLetterJob implements ShouldQueue
             ]);
         }
     }
+
+    public function failed(\Throwable $exception): void
+    {
+        AiJob::where('id', $this->aiJobId)
+            ->whereIn('status', ['pending', 'processing'])
+            ->update([
+                'status'        => 'failed',
+                'error_message' => 'Job timed out or was forcefully terminated: ' . $exception->getMessage(),
+            ]);
+    }
 }
