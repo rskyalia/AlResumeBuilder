@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -27,7 +27,7 @@ import { AuthRedirect } from "@/components/landing/AuthRedirect";
 import { FloatingNavbar } from "@/components/landing/FloatingNavbar";
 import { HeroSection } from "@/components/landing/HeroSection";
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 interface Feature {
   icon: LucideIcon;
@@ -127,12 +127,12 @@ const analyzeSteps = [
     icon: PenLine,
     title: "Edit di Builder",
     description:
-      'Klik "Generate Resume" — data diekstrak otomatis dan langsung dibuka di builder.',
+      'Klik "Generate Resume" â€” data diekstrak otomatis dan langsung dibuka di builder.',
     accentVar: "--lp-mint",
   },
 ];
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /** Inline style helper: accent color from CSS var */
 const accent = (v: string) => `var(${v})`;
@@ -141,7 +141,7 @@ const accentBg = (v: string) =>
 const accentBorder = (v: string) =>
   `color-mix(in srgb, var(${v}) 30%, transparent)`;
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function HomePage() {
   return (
@@ -154,10 +154,10 @@ export default function HomePage() {
         <FloatingNavbar />
 
         <main className="flex-1">
-          {/* ── Hero ── */}
+          {/* â”€â”€ Hero â”€â”€ */}
           <HeroSection />
 
-          {/* ── Features ── */}
+          {/* â”€â”€ Features â”€â”€ */}
           <section
             id="fitur"
             className="scroll-mt-20 py-20 sm:py-24"
@@ -221,7 +221,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Analisis ── */}
+          {/* â”€â”€ Analisis â”€â”€ */}
           <section
             id="analisis"
             className="scroll-mt-20 py-20 sm:py-28"
@@ -257,7 +257,7 @@ export default function HomePage() {
                   style={{ color: "var(--lp-text-muted)" }}
                 >
                   Sudah punya resume tapi tidak tahu seberapa baik performanya?
-                  Upload sekali — AI menganalisis, mengekstrak data, dan kamu
+                  Upload sekali â€” AI menganalisis, mengekstrak data, dan kamu
                   langsung bisa edit di builder tanpa mulai dari nol.
                 </p>
               </div>
@@ -326,7 +326,7 @@ export default function HomePage() {
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {[
                     {
-                      label: "Skor ATS 0–100",
+                      label: "Skor ATS 0â€“100",
                       desc: "Angka jelas seberapa resume kamu dikenali sistem rekruter.",
                     },
                     {
@@ -342,12 +342,12 @@ export default function HomePage() {
                       desc: "Keyword penting yang disarankan untuk ditambahkan.",
                     },
                     {
-                      label: "≥5 Rekomendasi",
+                      label: "â‰¥5 Rekomendasi",
                       desc: "Saran perbaikan spesifik dan actionable dari AI.",
                     },
                     {
                       label: "Generate ke Builder",
-                      desc: "Data diekstrak otomatis — buka langsung di editor.",
+                      desc: "Data diekstrak otomatis â€” buka langsung di editor.",
                     },
                   ].map(({ label, desc }) => (
                     <div key={label} className="flex gap-3">
@@ -406,7 +406,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Pricing ── */}
+          {/* â”€â”€ Pricing â”€â”€ */}
           <section
             id="harga"
             className="scroll-mt-20 py-16 sm:py-20"
@@ -553,7 +553,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ── Final CTA ── */}
+          {/* â”€â”€ Final CTA â”€â”€ */}
           <section
             className="px-4 py-20 sm:py-24"
             style={{ background: "var(--lp-bg-alt)" }}
@@ -588,7 +588,7 @@ export default function HomePage() {
                   style={{ color: "var(--lp-text-muted)" }}
                 >
                   Bergabung sekarang dan buat resume profesional pertamamu dalam
-                  hitungan menit — atau upload resume lamamu dan langsung lihat
+                  hitungan menit â€” atau upload resume lamamu dan langsung lihat
                   hasilnya.
                 </p>
                 <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
@@ -627,223 +627,9 @@ export default function HomePage() {
           </section>
         </main>
 
-        {/* ── Contact ── */}
-        <section
-          id="kontak"
-          className="scroll-mt-20 border-t py-20 sm:py-24"
-          style={{
-            borderColor: "var(--lp-bg-green)",
-            background: "var(--lp-bg-section)",
-          }}
-        >
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="mb-12 flex flex-col items-center gap-3 text-center">
-              <span
-                className="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold"
-                style={{
-                  borderColor: accentBorder("--lp-teal"),
-                  background: accentBg("--lp-teal"),
-                  color: "var(--lp-text)",
-                }}
-              >
-                <Mail
-                  className="h-3.5 w-3.5"
-                  style={{ color: accent("--lp-teal") }}
-                  aria-hidden="true"
-                />
-                Hubungi Developer
-              </span>
-              <h2
-                className="text-3xl font-bold tracking-tight sm:text-4xl"
-                style={{ color: "var(--lp-text)" }}
-              >
-                Ada pertanyaan atau kolaborasi?
-              </h2>
-              <p
-                className="max-w-md text-sm leading-relaxed"
-                style={{ color: "var(--lp-text-muted)" }}
-              >
-                Reach out langsung — siap membalas pesan terkait
-                AlresumeBuilder, project web, atau kerja sama lainnya.
-              </p>
-            </div>
+        {/* Contact section temporarily removed */}
 
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {/* Developer card */}
-              <div
-                className="relative overflow-hidden rounded-2xl border p-6 shadow-sm"
-                style={{
-                  background: "var(--lp-card)",
-                  borderColor: accentBorder("--lp-teal"),
-                }}
-              >
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full blur-2xl"
-                  style={{ background: accentBg("--lp-mint") }}
-                />
-                <div className="relative flex flex-col gap-4">
-                  <div className="flex items-center gap-4">
-                    <div
-                      className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full shadow-md"
-                      style={{border: `1.5px solid var(--lp-mint)`}}
-                      // style={{ border: `2px solid var(--lp-teal)` }}
-                    >
-                      <Image
-                        src="/images/alif.png"
-                        alt="Muhammad Alif Sya'bani"
-                        fill
-                        className="object-cover object-top"
-                        sizes="64px"
-                      />
-                    </div>
-                    <div>
-                      <p
-                        className="font-bold"
-                        style={{ color: "var(--lp-text)" }}
-                      >
-                        Muhammad Alif Sya&apos;bani
-                      </p>
-                      <p
-                        className="text-sm"
-                        style={{ color: "var(--lp-text-muted)" }}
-                      >
-                        Public Speaker &amp; Web Developer
-                      </p>
-                    </div>
-                  </div>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "var(--lp-text-muted)" }}
-                  >
-                    Programmer, Graphic Designer, dan Public Speaker dengan
-                    pengalaman dalam pengembangan aplikasi berbasis web, desain
-                    visual, dan komunikasi publik. Minat pada UI/UX, AI, dan
-                    transformasi digital.
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {[
-                      "PHP",
-                      "Next.js",
-                      "React.js",
-                      "Tailwind CSS",
-                      "UI/UX",
-                      "AI",
-                      "GSAP",
-                    ].map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md border px-2 py-0.5 text-xs font-medium"
-                        style={{
-                          borderColor: accentBorder("--lp-teal"),
-                          background: accentBg("--lp-teal"),
-                          color: "var(--lp-text)",
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div
-                    className="flex items-center gap-1.5 text-xs"
-                    style={{ color: "var(--lp-text-muted)" }}
-                  >
-                    <MapPin
-                      className="h-3.5 w-3.5 shrink-0"
-                      aria-hidden="true"
-                    />
-                    Jenggawah, Jember, Jawa Timur
-                  </div>
-                </div>
-              </div>
-
-              {/* Contact links */}
-              <div className="flex flex-col gap-4">
-                {[
-                  {
-                    href: "mailto:syahbanialif79@gmail.com",
-                    label: "Email",
-                    value: "syahbanialif79@gmail.com",
-                    icon: Mail,
-                    accentVar: "--lp-rose",
-                    target: undefined,
-                  },
-                  {
-                    href: "https://wa.me/6283112088830",
-                    label: "WhatsApp",
-                    value: "+62 831 1208 8830",
-                    icon: MessageCircle,
-                    accentVar: "--lp-teal",
-                    target: "_blank" as const,
-                  },
-                  {
-                    href: "https://syahbanialif.vercel.app",
-                    label: "Portfolio",
-                    value: "syahbanialif.vercel.app",
-                    icon: Globe,
-                    accentVar: "--lp-orange",
-                    target: "_blank" as const,
-                  },
-                ].map(
-                  ({ href, label, value, icon: Icon, accentVar, target }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      target={target}
-                      rel={target ? "noopener noreferrer" : undefined}
-                      className="group flex items-center gap-4 rounded-2xl border p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                      style={{
-                        background: "var(--lp-card)",
-                        borderColor: accentBorder(accentVar),
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.borderColor = `var(${accentVar})`)
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.borderColor =
-                          accentBorder(accentVar))
-                      }
-                    >
-                      <div
-                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
-                        style={{ background: accentBg(accentVar) }}
-                      >
-                        <Icon
-                          className="h-5 w-5"
-                          style={{ color: accent(accentVar) }}
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div className="min-w-0">
-                        <p
-                          className="text-xs font-semibold uppercase tracking-wide"
-                          style={{ color: "var(--lp-text-muted)" }}
-                        >
-                          {label}
-                        </p>
-                        <p
-                          className="truncate text-sm font-bold"
-                          style={{ color: "var(--lp-text)" }}
-                        >
-                          {value}
-                        </p>
-                      </div>
-                      <ArrowRight
-                        className="ml-auto h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5"
-                        style={{
-                          color: `color-mix(in srgb, var(${accentVar}) 60%, transparent)`,
-                        }}
-                        aria-hidden="true"
-                      />
-                    </a>
-                  ),
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Footer ── */}
+        {/* â”€â”€ Footer â”€â”€ */}
         <footer
           className="border-t"
           style={{
@@ -879,7 +665,7 @@ export default function HomePage() {
                   className="max-w-xs text-sm leading-relaxed"
                   style={{ color: "var(--lp-text-muted)" }}
                 >
-                  Platform AI untuk membuat resume profesional — analisis ATS
+                  Platform AI untuk membuat resume profesional â€” analisis ATS
                   mendalam, ekstrak data otomatis, dan export PDF siap kirim.
                 </p>
                 <div className="flex gap-3">
@@ -948,7 +734,6 @@ export default function HomePage() {
                     { label: "Fitur", href: "#fitur" },
                     { label: "Analisis", href: "#analisis" },
                     { label: "Harga", href: "#harga" },
-                    { label: "Kontak", href: "#kontak" },
                   ].map(({ label, href }) => (
                     <li key={label}>
                       <a
@@ -1014,7 +799,7 @@ export default function HomePage() {
               className="max-w-5xl mx-auto px-4 py-5 flex flex-col items-center justify-between gap-2 text-xs sm:flex-row"
               style={{ color: "var(--lp-text-muted)" }}
             >
-              <p>© 2025 AlresumeBuilder. All rights reserved.</p>
+              <p>Â© 2025 AlresumeBuilder. All rights reserved.</p>
               <p>
                 Built by{" "}
                 <a
@@ -1035,7 +820,7 @@ export default function HomePage() {
                   Muhammad Alif Sya&apos;bani
                 </a>
               </p>
-            </div>
+              </div>
           </div>
         </footer>
       </div>

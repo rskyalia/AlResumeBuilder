@@ -13,9 +13,18 @@ if (!args.input || !args.output) {
     process.exit(1);
 }
 
-// Find Chrome executable
+// Find Chrome executable (supports both Linux/cloud and Windows/local)
 function findChrome() {
     const candidates = [
+        // Linux system Chrome (Debian/Ubuntu — Laravel Cloud)
+        '/usr/bin/google-chrome-stable',
+        '/usr/bin/google-chrome',
+        '/usr/bin/chromium-browser',
+        '/usr/bin/chromium',
+        '/snap/bin/chromium',
+        // Puppeteer downloaded Chrome on Linux
+        join(homedir(), '.cache/puppeteer/chrome/linux-*/chrome-linux64/chrome'),
+        // Windows local dev
         join(homedir(), '.cache/puppeteer/chrome/win64-152.0.7977.42/chrome-win64/chrome.exe'),
         join(homedir(), '.cache/puppeteer/chrome/win64-131.0.6778.264/chrome-win64/chrome.exe'),
         'C:/Program Files/Google/Chrome/Application/chrome.exe',
@@ -30,7 +39,7 @@ function findChrome() {
 (async () => {
     let browser;
     try {
-        const chromePath = findChrome();
+        const chromePath = process.env.PUPPETEER_EXECUTABLE_PATH || findChrome();
         const launchOptions = {
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage'],
             headless: true,

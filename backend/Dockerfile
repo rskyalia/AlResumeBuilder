@@ -31,6 +31,8 @@ RUN apk add --no-cache \
     libzip-dev \
     unzip \
     curl \
+    chromium \
+    chromium-chromedriver \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
         pdo \
@@ -44,6 +46,10 @@ RUN apk add --no-cache \
         intl
 
 WORKDIR /var/www/html
+
+# Tell Puppeteer to use the system Chromium, not download its own
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # Copy vendor from build stage
 COPY --from=composer-build /app/vendor ./vendor
