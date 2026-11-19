@@ -141,11 +141,11 @@ export default function ExportPage() {
  onClick={() => setSelectedSlug(template.slug)}
  className={[
  'rounded-2xl border p-4 text-left transition-all duration-200',
- 'dark:hover:border-white/25 hover:border-black/[0.20] dark:hover:bg-background hover:bg-black/[0.04]',
+ 'hover:border-border/40 hover:bg-muted/50',
  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/40',
  isSelected
  ? 'border-teal-500/40 dark:bg-teal-500/8 bg-teal-500/12'
- : ' border-black/[0.08] bg-background',
+ : 'border-border bg-background',
  ].join(' ')}
  >
  <div className="flex items-center justify-between">

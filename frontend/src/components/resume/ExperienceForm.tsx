@@ -195,7 +195,7 @@ function ExperienceModal({ open, onOpenChange, initial, onSave }: ExperienceModa
           <Field label="Jenis Pengalaman" error={errors.experience_type?.message} required>
             <select
               {...register('experience_type')}
-              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-9 w-full rounded-md border border-input bg-background text-foreground px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               aria-invalid={!!errors.experience_type}
             >
               <option value="kerja">Pengalaman Kerja</option>
@@ -277,7 +277,7 @@ function ExperienceModal({ open, onOpenChange, initial, onSave }: ExperienceModa
               <Field label="Tingkat Lomba" error={errors.competition_level?.message} required>
                 <select
                   {...register('competition_level')}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-9 w-full rounded-md border border-input bg-background text-foreground px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                   aria-invalid={!!errors.competition_level}
                 >
                   <option value="">-- Pilih Tingkat --</option>
@@ -329,7 +329,7 @@ function ExperienceModal({ open, onOpenChange, initial, onSave }: ExperienceModa
               <Field label="Lingkup Organisasi" error={errors.organization_scope?.message} required>
                 <select
                   {...register('organization_scope')}
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-9 w-full rounded-md border border-input bg-background text-foreground px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                   aria-invalid={!!errors.organization_scope}
                 >
                   <option value="">-- Pilih Lingkup --</option>

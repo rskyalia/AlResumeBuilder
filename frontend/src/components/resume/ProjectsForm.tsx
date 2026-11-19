@@ -276,7 +276,7 @@ export function ProjectsForm({ resumeId }: ProjectsFormProps) {
  {entries.map((entry) => (
  <li
  key={entry.id}
- className="rounded-2xl border border-black/[0.08] bg-background p-4 space-y-1.5"
+ className="rounded-2xl border border-border bg-background p-4 space-y-1.5"
  >
  <div className="flex items-start justify-between gap-4">
  <div className="min-w-0 flex-1">

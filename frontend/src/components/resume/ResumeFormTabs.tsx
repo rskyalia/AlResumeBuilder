@@ -39,7 +39,7 @@ export function ResumeFormTabs({
 }: ResumeFormTabsProps) {
  return (
  <Tabs defaultValue="personal" className="space-y-4">
- <TabsList className="flex h-auto flex-wrap gap-1 bg-black/[0.03] border border-black/[0.08] p-1.5">
+ <TabsList className="flex h-auto flex-wrap gap-1 bg-muted border border-border p-1.5">
  {TABS.map(({ value, label }) => (
  <TabsTrigger key={value} value={value} className="flex-shrink-0">
  {label}

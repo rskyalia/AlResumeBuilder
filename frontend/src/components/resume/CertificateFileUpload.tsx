@@ -102,7 +102,7 @@ export function CertificateFileUpload({
  href={currentFileUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="inline-flex items-center gap-1.5 rounded-md border border-black/[0.12] bg-background px-2.5 py-1 text-xs font-medium text-foreground hover: hover:bg-black/[0.04] transition-colors"
+ className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground hover:bg-muted transition-colors"
  >
  <FileText className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
  Lihat PDF

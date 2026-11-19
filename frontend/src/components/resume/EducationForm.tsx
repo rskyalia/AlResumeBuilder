@@ -148,7 +148,7 @@ function EducationModal({ open, onOpenChange, initial, onSave }: EducationModalP
  <Field label="Jenjang Pendidikan" error={errors.education_level?.message} required>
  <select
  {...register('education_level')}
- className="flex h-9 w-full rounded-md border border-black/[0.12] bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+ className="flex h-9 w-full rounded-md border border-input bg-background text-foreground px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
  aria-invalid={!!errors.education_level}
  >
  <option value="">-- Pilih Jenjang --</option>
@@ -354,7 +354,7 @@ export function EducationForm({ resumeId }: EducationFormProps) {
  {entries.map((entry) => (
  <li
  key={entry.id}
- className="flex items-start justify-between gap-4 rounded-2xl border border-black/[0.08] bg-background p-4"
+ className="flex items-start justify-between gap-4 rounded-2xl border border-border bg-background p-4"
  >
  <div className="min-w-0 flex-1">
  <div className="flex items-center gap-2 flex-wrap mb-0.5">

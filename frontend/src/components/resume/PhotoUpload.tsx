@@ -92,7 +92,7 @@ export function PhotoUpload({
  <div className="flex items-center gap-4">
  {/* Avatar preview */}
  <div
- className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-black/[0.12] bg-background"
+ className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-border bg-background"
  aria-label="Foto profil"
  >
  {currentPhotoUrl ? (

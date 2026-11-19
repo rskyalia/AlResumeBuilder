@@ -134,7 +134,7 @@ function SkillModal({ open, onOpenChange, initial, onSave }: SkillModalProps) {
  <Field label="Level" error={errors.level?.message} required>
  <select
  {...register('level')}
- className="flex h-10 w-full rounded-md border border-black/[0.12] bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+ className="flex h-10 w-full rounded-md border border-input bg-background text-foreground px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
  aria-invalid={!!errors.level}
  >
  <option value="beginner">Pemula (Beginner)</option>
